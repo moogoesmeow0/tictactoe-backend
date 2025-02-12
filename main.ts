@@ -91,7 +91,7 @@ router.put("/users/:user", async (ctx, next) => {
 router.put("/boards/:board", async (ctx, next) => {
   const { board, date, creatorID } = await ctx.request.body.json();
   await client.queryObject(
-    `UPDATE boards SET board = $1, date = $2, creatorID = $3 WHERE id = $4;`,
+    `UPDATE boards SET board = $1, date = $2, "creatorID" = $3 WHERE id = $4;`,
     [board, date, creatorID, ctx.params.board],
   );
   ctx.response.status = 200;
@@ -100,7 +100,7 @@ router.put("/boards/:board", async (ctx, next) => {
 router.post("/boards", async (ctx, next) => {
   const { board, date, creatorID } = await ctx.request.body.json();
   await client.queryObject(
-    `INSERT INTO boards (board, date, creatorID) VALUES ($1, $2, $3);`,
+    `INSERT INTO boards (board, date, "creatorID") VALUES ($1, $2, $3);`,
     [board, date, creatorID],
   );
   ctx.response.status = 201;
