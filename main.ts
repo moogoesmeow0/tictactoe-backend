@@ -98,10 +98,10 @@ router.put("/boards/:board", async (ctx, next) => {
 });
 
 router.post("/boards", async (ctx, next) => {
-  const { board, date, creatorID } = await ctx.request.body.json();
+  const { board, creatorID } = await ctx.request.body.json();
   await client.queryObject(
-    `INSERT INTO boards (board, date, "creatorID") VALUES ($1, $2, $3);`,
-    [board, date, creatorID],
+    `INSERT INTO boards (board, "creatorID") VALUES ($1, $2);`,
+    [board, creatorID],
   );
   ctx.response.status = 201;
 });
