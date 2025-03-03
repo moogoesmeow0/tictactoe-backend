@@ -1,6 +1,5 @@
 import { Application, Router } from "@oak/oak";
 import { Client } from "@db/postgres";
-import { hash } from "node:crypto";
 
 const client = new Client({
   user: "root",
@@ -14,13 +13,9 @@ await client.connect();
 const app = new Application();
 const router = new Router();
 
-const allowedOrigins = ["https://taranathan.com", "https://api.taranathan.com"];
 
 app.use(async (ctx, next) => {
-  const requestOrigin = ctx.request.headers.get("Origin") ?? "";
-  if (allowedOrigins.includes(requestOrigin)) {
-    ctx.response.headers.set("Access-Control-Allow-Origin", requestOrigin);
-  }
+  ctx.response.headers.set("Access-Control-Allow-Origin", "https://taranathan.com");
   ctx.response.headers.set(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, OPTIONS",
