@@ -116,6 +116,16 @@ router.post("/users", async (ctx, next) => {
   ctx.response.status = 200;
 });
 
+router.get("/debug/boards-columns", async (ctx, next) => {
+  const result = await client.queryObject(`
+    SELECT column_name 
+    FROM information_schema.columns 
+    WHERE table_name = 'boards';
+  `);
+  ctx.response.body = result;
+  ctx.response.status = 200;
+});
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 
