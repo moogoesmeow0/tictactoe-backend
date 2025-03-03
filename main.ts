@@ -98,7 +98,12 @@ router.put("/boards/:board", async (ctx, next) => {
 });
 
 router.post("/boards", async (ctx, next) => {
-  const { board, creatorID } = await ctx.request.body.json();
+  const requestBody = await ctx.request.body.json();
+  console.log("Request body:", requestBody);
+  
+  const { board, creatorID } = requestBody;
+  console.log("Extracted values:", { board, creatorID });
+  
   await client.queryObject(
     `INSERT INTO boards (board, "creatorID") VALUES ($1, $2);`,
     [board, creatorID],
@@ -116,15 +121,6 @@ router.post("/users", async (ctx, next) => {
   ctx.response.status = 200;
 });
 
-router.get("/debug/boards-columns", async (ctx, next) => {
-  const result = await client.queryObject(`
-    SELECT column_name 
-    FROM information_schema.columns 
-    WHERE table_name = 'boards';
-  `);
-  ctx.response.body = result;
-  ctx.response.status = 200;
-});
 
 app.use(router.routes());
 app.use(router.allowedMethods());
