@@ -98,11 +98,8 @@ router.put("/boards/:board", async (ctx, next) => {
 });
 
 router.post("/boards", async (ctx, next) => {
-  const requestBody = await ctx.request.body.json();
-  console.log("Request body:", requestBody);
-  
+  const requestBody = await ctx.request.body.json();  
   const { board, creatorID } = requestBody;
-  console.log("Extracted values:", { board, creatorID });
   
   await client.queryObject(
     `INSERT INTO boards (board, "creatorID") VALUES ($1, $2);`,
