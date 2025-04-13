@@ -99,15 +99,15 @@ router.put("/boards/:board", async (ctx, next) => {
     `UPDATE boards SET board = $1, date = $2, "creatorID" = $3 WHERE id = $4;`,
     [board, date, creatorID, boardId],
   );
-  
+
   // Send update notification to all clients connected to this board
   const updatedBoard = await get_board(boardId);
-  broadcastToBoard(boardId, { 
-    type: "board_updated", 
+  broadcastToBoard(boardId, {
+    type: "board_updated",
     boardId,
-    data: updatedBoard.rows
+    data: updatedBoard.rows,
   });
-  
+
   ctx.response.status = 200;
 });
 
@@ -134,7 +134,7 @@ router.post("/users", async (ctx, next) => {
 
 //========================= websocket stuff =========================
 
-router.get("/ws/:board", async (ctx) => {
+router.get("/ws/board/:board", async (ctx) => {
   if (!ctx.isUpgradable) {
     ctx.response.status = 400;
     ctx.response.body = "Cannot upgrade to WebSocket";
