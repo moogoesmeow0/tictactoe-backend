@@ -21,7 +21,7 @@ const boardConnections = new Map<number, Set<WebSocket>>();
 app.use(async (ctx, next) => {
   ctx.response.headers.set(
     "Access-Control-Allow-Origin",
-    "https://taranathan.com",
+    "*",
   );
   ctx.response.headers.set(
     "Access-Control-Allow-Methods",
@@ -31,6 +31,10 @@ app.use(async (ctx, next) => {
     "Access-Control-Allow-Headers",
     "Content-Type, Authorization",
   );
+  ctx.response.headers.set(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval';",
+  )
 
   if (ctx.request.method === "OPTIONS") {
     ctx.response.status = 204;
@@ -145,7 +149,7 @@ router.get("/ws/board/:board", async (ctx) => {
   console.log("WebSocket connection requested");
 
   const boardId = parseInt(ctx.params.board);
-  const ws = await ctx.upgrade();
+  const ws: WebSocket = await ctx.upgrade();
   activeConnections.add(ws);
 
   // Add the connection to the board-specific collection
