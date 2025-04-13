@@ -31,10 +31,7 @@ app.use(async (ctx, next) => {
     "Access-Control-Allow-Headers",
     "Content-Type, Authorization",
   );
-  ctx.response.headers.set(
-    "Content-Security-Policy",
-    "default-src *;",
-  );
+
 
   if (ctx.request.method === "OPTIONS") {
     ctx.response.status = 204;
