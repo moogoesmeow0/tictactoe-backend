@@ -33,8 +33,8 @@ app.use(async (ctx, next) => {
   );
   ctx.response.headers.set(
     "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval';",
-  )
+    "default-src *;",
+  );
 
   if (ctx.request.method === "OPTIONS") {
     ctx.response.status = 204;
