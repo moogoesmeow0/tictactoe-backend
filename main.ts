@@ -138,8 +138,11 @@ router.get("/ws/board/:board", async (ctx) => {
   if (!ctx.isUpgradable) {
     ctx.response.status = 400;
     ctx.response.body = "Cannot upgrade to WebSocket";
+    console.log("Cannot upgrade to WebSocket");
     return;
   }
+
+  console.log("WebSocket connection requested");
 
   const boardId = parseInt(ctx.params.board);
   const ws = await ctx.upgrade();
