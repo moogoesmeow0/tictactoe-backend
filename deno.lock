@@ -22,7 +22,8 @@
     "jsr:@std/path@^1.0.8": "1.0.8",
     "jsr:@std/streams@^1.0.9": "1.0.9",
     "npm:@types/node@*": "22.5.4",
-    "npm:path-to-regexp@^6.3.0": "6.3.0"
+    "npm:path-to-regexp@^6.3.0": "6.3.0",
+    "npm:ws@^8.18.1": "8.18.1"
   },
   "jsr": {
     "@oak/commons@1.0.0": {
@@ -113,6 +114,9 @@
     },
     "undici-types@6.19.8": {
       "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
+    },
+    "ws@8.18.1": {
+      "integrity": "sha512-RKW2aJZMXeMxVpnZ6bck+RswznaxmzdULiBr6KY7XkTnW8uvt0iT9H5DkHUChXrc+uurzwa0rVI16n/Xzjdz1w=="
     }
   },
   "redirects": {
@@ -348,7 +352,8 @@
     "dependencies": [
       "jsr:@oak/oak@^17.1.4",
       "jsr:@std/assert@1",
-      "jsr:@std/http@^1.0.13"
+      "jsr:@std/http@^1.0.13",
+      "npm:ws@^8.18.1"
     ]
   }
 }

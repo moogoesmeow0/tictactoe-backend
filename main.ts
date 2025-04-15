@@ -5,7 +5,7 @@ const client = new Client({
   user: "root",
   database: "tictactoe",
   hostname: "taranathan.com",
-  password: "password",
+  password: "M00g03sm30w!",
   port: 5432,
 });
 await client.connect();
