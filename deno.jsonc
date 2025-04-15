@@ -7,6 +7,5 @@
     "@std/assert": "jsr:@std/assert@1",
     "@std/http": "jsr:@std/http@^1.0.13",
     "@db/postgres": "https://deno.land/x/postgres/mod.ts",
-    "ws": "npm:ws@^8.18.1",
   }
 }
